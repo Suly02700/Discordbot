@@ -1,0 +1,27 @@
+//const
+const { Client } = require("discord.js");
+const bot = new Client({ intents: ["Guilds"] });
+//logs+login
+console.log("Connexion au bot...");
+bot.login(Token)
+    .then(() => console.log("Connecté au bot !"))
+    .catch((error) =>
+        console.log("Impossible de se connecter au bot - " + error),
+    );
+//comands
+bot.on("ready", async () => {
+    await bot.application.commands.set([
+        {
+            name: "quoi",
+            description: "Feur!",
+        },
+    ]);
+
+    console.log("Le bot est prêt !");
+});
+
+bot.on("interactionCreate", (interaction) => {
+    if (!interaction.isCommand()) return;
+
+    if (interaction.commandName === "quoi") interaction.reply("feur!");
+});
